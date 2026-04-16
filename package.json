@@ -1,0 +1,28 @@
+{
+  "name": "my-port-folio",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:web": "turbo run dev --filter=web",
+    "dev:api": "turbo run dev --filter=api",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "storybook": "turbo run storybook --filter=web",
+    "storybook:build": "turbo run build-storybook --filter=web",
+    "openapi:generate": "pnpm --filter=openapi run generate",
+    "openapi:sync": "pnpm --filter=api run generate:schema && pnpm --filter=openapi run generate"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.33.0"
+}

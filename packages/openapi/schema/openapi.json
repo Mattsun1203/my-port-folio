@@ -1,0 +1,85 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Portfolio API",
+    "description": "Personal portfolio backend API",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "contact",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateContactDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Taro Yamada",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "example": "taro@example.com"
+          },
+          "message": {
+            "type": "string",
+            "example": "I would like to discuss a project.",
+            "maxLength": 2000,
+            "minLength": 10
+          }
+        },
+        "required": ["name", "email", "message"]
+      },
+      "ContactResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": ["success"]
+      }
+    }
+  },
+  "paths": {
+    "/contact": {
+      "post": {
+        "operationId": "ContactController_create",
+        "summary": "Send a contact message",
+        "tags": ["contact"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateContactDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message sent successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed."
+          }
+        }
+      }
+    }
+  }
+}
