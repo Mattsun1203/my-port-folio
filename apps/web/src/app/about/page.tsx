@@ -21,8 +21,7 @@ const strengths = [
   {
     icon: '🤝',
     title: 'チーム開発',
-    description:
-      'コードレビューや設計議論を通じてチーム全体の品質向上に貢献します。',
+    description: 'コードレビューや設計議論を通じてチーム全体の品質向上に貢献します。',
   },
 ];
 
@@ -41,9 +40,7 @@ export default function AboutPage() {
           {/* Avatar placeholder */}
           <div className="flex justify-center">
             <div className="h-64 w-64 overflow-hidden rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 shadow-xl">
-              <div className="flex h-full w-full items-center justify-center text-8xl">
-                👤
-              </div>
+              <div className="flex h-full w-full items-center justify-center text-8xl">👤</div>
             </div>
           </div>
 
@@ -52,7 +49,8 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-slate-900">Your Name</h2>
             <p className="text-indigo-600 font-medium">Frontend Engineer</p>
             <p className="leading-relaxed">
-              フロントエンドエンジニアとして、React / Next.js を中心にプロダクト開発に携わっています。
+              フロントエンドエンジニアとして、React / Next.js
+              を中心にプロダクト開発に携わっています。
               ユーザー体験を大切にし、保守性の高いコードを書くことを心がけています。
             </p>
             <p className="leading-relaxed">

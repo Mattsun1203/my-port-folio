@@ -1,7 +1,7 @@
-import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateContactDto } from './dto/create-contact.dto';
 import { ContactService } from './contact.service';
+import { CreateContactDto } from './dto/create-contact.dto';
 
 @ApiTags('contact')
 @Controller('contact')

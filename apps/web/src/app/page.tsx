@@ -46,17 +46,13 @@ export default function HeroPage() {
         {/* Scroll indicator */}
         <div className="mt-20 flex animate-bounce justify-center">
           <svg
+            aria-hidden="true"
             className="h-6 w-6 text-slate-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </div>

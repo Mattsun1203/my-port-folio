@@ -62,6 +62,7 @@ export default function CareerPage() {
           <div className="space-y-10">
             {timeline.map((item, index) => (
               <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: timeline items have no unique id
                 key={index}
                 className={`relative flex items-start gap-6 ${
                   index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'

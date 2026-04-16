@@ -1,8 +1,8 @@
 import 'reflect-metadata';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { writeFileSync, mkdirSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from '../src/app.module';
 
 async function generate() {
@@ -16,10 +16,7 @@ async function generate() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  const outputPath = resolve(
-    __dirname,
-    '../../../packages/openapi/schema/openapi.json',
-  );
+  const outputPath = resolve(__dirname, '../../../packages/openapi/schema/openapi.json');
 
   mkdirSync(dirname(outputPath), { recursive: true });
   writeFileSync(outputPath, JSON.stringify(document, null, 2));

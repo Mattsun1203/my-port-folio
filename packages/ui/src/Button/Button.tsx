@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg';

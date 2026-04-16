@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { NestFactory } from '@nestjs/core';
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { ValidationPipe } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { writeFileSync } from 'fs';
-import { resolve } from 'path';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -32,10 +32,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   if (process.env.NODE_ENV !== 'production') {
-    const outputPath = resolve(
-      __dirname,
-      '../../../packages/openapi/schema/openapi.json',
-    );
+    const outputPath = resolve(__dirname, '../../../packages/openapi/schema/openapi.json');
     writeFileSync(outputPath, JSON.stringify(document, null, 2));
   }
 

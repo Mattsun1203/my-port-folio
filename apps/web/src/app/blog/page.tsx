@@ -110,6 +110,7 @@ export default function BlogPage() {
               </div>
 
               <svg
+                aria-hidden="true"
                 className="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-indigo-500 transition-colors"
                 fill="none"
                 viewBox="0 0 24 24"

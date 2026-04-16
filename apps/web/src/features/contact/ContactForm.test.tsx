@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ContactForm } from './ContactForm';
 
 // openapi-fetch のモック
@@ -39,7 +39,10 @@ describe('ContactForm', () => {
   });
 
   it('有効なデータを入力して送信すると成功メッセージが表示される', async () => {
-    vi.mocked(apiClient.POST).mockResolvedValue({ data: { success: true }, error: undefined } as never);
+    vi.mocked(apiClient.POST).mockResolvedValue({
+      data: { success: true },
+      error: undefined,
+    } as never);
 
     render(<ContactForm />);
 
