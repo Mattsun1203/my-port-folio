@@ -12,7 +12,7 @@
     "generate": "openapi-typescript ./schema/openapi.json -o ./generated/types.ts"
   },
   "devDependencies": {
-    "openapi-typescript": "^7.4.4",
-    "typescript": "^5.7.3"
+    "openapi-typescript": "7.4.4",
+    "typescript": "5.7.3"
   }
 }

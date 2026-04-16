@@ -20,12 +20,12 @@
     "openapi:sync": "pnpm --filter=api run generate:schema && pnpm --filter=openapi run generate"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.12",
-    "turbo": "^2.3.3",
-    "typescript": "^5.7.3"
+    "@biomejs/biome": "2.4.12",
+    "turbo": "2.3.3",
+    "typescript": "5.7.3"
   },
   "engines": {
-    "node": "24.15.0",
+    "node": ">=20.0.0",
     "pnpm": ">=10.0.0"
   },
   "packageManager": "pnpm@10.33.0"
