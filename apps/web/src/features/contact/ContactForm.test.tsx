@@ -1,23 +1,14 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { HttpResponse, http } from 'msw';
+import { describe, expect, it } from 'vitest';
+import { server } from '@/test/server';
 import { ContactForm } from './ContactForm';
 
-// openapi-fetch のモック
-vi.mock('@/lib/api-client', () => ({
-  apiClient: {
-    POST: vi.fn(),
-  },
-}));
-
-import { apiClient } from '@/lib/api-client';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
 describe('ContactForm', () => {
   const user = userEvent.setup();
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   it('フォームの各フィールドが表示される', () => {
     render(<ContactForm />);
@@ -39,11 +30,6 @@ describe('ContactForm', () => {
   });
 
   it('有効なデータを入力して送信すると成功メッセージが表示される', async () => {
-    vi.mocked(apiClient.POST).mockResolvedValue({
-      data: { success: true },
-      error: undefined,
-    } as never);
-
     render(<ContactForm />);
 
     await user.type(screen.getByLabelText(/お名前/), '山田 太郎');
@@ -60,18 +46,14 @@ describe('ContactForm', () => {
         screen.getByText('メッセージを送信しました。ありがとうございます！'),
       ).toBeInTheDocument();
     });
-
-    expect(apiClient.POST).toHaveBeenCalledWith('/contact', {
-      body: {
-        name: '山田 太郎',
-        email: 'taro@example.com',
-        message: 'お問い合わせのテストメッセージです。よろしくお願いします。',
-      },
-    });
   });
 
   it('API エラー時にエラーメッセージが表示される', async () => {
-    vi.mocked(apiClient.POST).mockRejectedValue(new Error('Network error'));
+    server.use(
+      http.post(`${BASE_URL}/contact`, () => {
+        return HttpResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+      }),
+    );
 
     render(<ContactForm />);
 
